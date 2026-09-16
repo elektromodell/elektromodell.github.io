@@ -1,266 +1,53 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BTCar – Android Micro Model Controller</title>
-  <meta name="description" content="BTCar – Android-based universal controller for micro models, RC vehicles and model railway functions. Public beta, BLE, BT Classic, WiFi/ESP32 and more.">
-  <meta name="theme-color" content="#101418">
-  <style>
-    :root {
-      --bg:#0e1216;
-      --panel:#171d23;
-      --panel2:#11171c;
-      --line:#303840;
-      --text:#e8edf2;
-      --muted:#aebac4;
-      --cyan:#00d4ff;
-      --green:#00d63f;
-      --yellow:#ffd200;
-      --red:#ff4d4d;
-      --white:#ffffff;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-    header{position:sticky;top:0;z-index:1000;background:rgba(14,18,22,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .nav{max-width:1180px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:18px}
-    .brand{font-weight:800;font-size:24px;letter-spacing:.5px;color:var(--white);white-space:nowrap}
-    .brand span{color:var(--cyan)}
-    nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap}
-    nav a{color:#dbe4ec;text-decoration:none;font-size:14px}
-    nav a:hover{color:var(--cyan)}
-    .langs{display:flex;gap:6px;margin-left:14px}
-    .langs button{background:#1b2229;border:1px solid #3b4751;color:#dbe4ec;border-radius:6px;padding:5px 8px;cursor:pointer;font-weight:700}
-    .langs button.active{border-color:var(--cyan);color:var(--cyan)}
-    .hero{padding:0;background:#071017}
-    .hero img{display:block;width:100%;height:auto;max-height:78vh;object-fit:cover;object-position:center}
-    .hero-note{max-width:1180px;margin:auto;padding:16px 20px 0;color:var(--muted);font-size:14px}
-    section{padding:64px 20px}
-    .container{max-width:1180px;margin:auto}
-    h2{font-size:32px;margin:0 0 18px;border-left:4px solid var(--cyan);padding-left:14px;color:var(--white)}
-    h3{margin:0 0 8px;color:var(--cyan)}
-    p.lead{font-size:18px;color:#bec9d2;max-width:950px}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px}
-    .card p{color:var(--muted);margin-bottom:0}
-    .accent-green{border-top:3px solid var(--green)}
-    .accent-yellow{border-top:3px solid var(--yellow)}
-    .accent-red{border-top:3px solid var(--red)}
-    .highlight{background:var(--panel2)}
-    .badge{display:inline-block;padding:6px 11px;border-radius:20px;font-size:13px;font-weight:700;background:#27323b;color:var(--yellow);margin-top:10px}
-    .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-    .btn{display:inline-block;text-decoration:none;border-radius:8px;padding:11px 18px;font-weight:700;border:1px solid #4a5965;color:var(--text);background:#1a2128}
-    .btn.primary{background:var(--cyan);color:#071017;border-color:var(--cyan)}
-    .btn.green{border-color:var(--green);color:var(--green)}
-    .btn:hover{filter:brightness(1.08)}
-    .support-amount{font-size:38px;font-weight:800;color:var(--yellow);line-height:1}
-    .support-note{color:var(--muted)}
-    .feedback-list{margin:18px 0 0;padding-left:20px;color:#c3cdd5}
-    .feedback-list li{margin:7px 0}
-    .channels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}
-    .channel{background:#151b20;border:1px solid var(--line);border-radius:10px;padding:16px}
-    .channel a{font-weight:700;color:var(--cyan);text-decoration:none}
-    .channel p{margin:7px 0 0;color:var(--muted);font-size:14px}
-    .notice{border-left:3px solid var(--green);padding:12px 16px;background:#121a18;color:#c9d6cf;margin:18px 0;border-radius:4px}
-    footer{padding:30px 20px;border-top:1px solid var(--line);background:#090d10;text-align:center;color:#7f8b95;font-size:14px}
-    footer strong{color:var(--cyan)}
-    .color-dots{display:inline-flex;gap:6px;margin-left:8px;vertical-align:middle}
-    .dot{width:9px;height:9px;border-radius:50%;display:inline-block}.c{background:var(--cyan)}.g{background:var(--green)}.y{background:var(--yellow)}.r{background:var(--red)}
-    @media(max-width:900px){
-      .nav{flex-wrap:wrap}
-      nav{order:3;width:100%;justify-content:center;margin-left:0}
-      .langs{margin-left:auto}
-      .grid{grid-template-columns:1fr}
-      .channels{grid-template-columns:1fr}
-      section{padding:48px 18px}
-      h2{font-size:27px}
-      .hero img{max-height:none}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTCar – Android Micro Model Controller</title>
+<meta name="description" content="BTCar – Android-based universal controller for micro models, RC vehicles and model railway functions. Free Public Beta with optional development support.">
+<meta name="theme-color" content="#0e1216">
+<style>
+:root{--bg:#0e1216;--panel:#171d23;--panel2:#11171c;--line:#303840;--text:#e8edf2;--muted:#aebac4;--cyan:#00d4ff;--green:#00d63f;--yellow:#ffd200;--red:#ff4d4d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}header{position:sticky;top:0;z-index:100;background:rgba(14,18,22,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}.nav{max-width:1180px;margin:auto;padding:10px 18px;display:flex;align-items:center;gap:18px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:24px;white-space:nowrap}.brand svg{width:42px;height:42px;display:block}.brand .car{color:var(--cyan)}nav{margin-left:auto;display:flex;gap:15px;flex-wrap:wrap}nav a{color:#dbe4ec;text-decoration:none;font-size:14px}nav a:hover{color:var(--cyan)}.langs{display:flex;gap:6px;margin-left:10px}.langs button{background:#1b2229;border:1px solid #3b4751;color:#dbe4ec;border-radius:6px;padding:5px 8px;cursor:pointer;font-weight:700}.langs button.active{border-color:var(--cyan);color:var(--cyan)}.hero{background:#071017;border-bottom:1px solid #1e2a33}.hero img{display:block;width:100%;height:auto;max-height:78vh;object-fit:cover;object-position:center}.hero-note{max-width:1180px;margin:auto;padding:14px 18px;color:var(--muted);font-size:14px}section{padding:58px 18px}.container{max-width:1180px;margin:auto}h2{font-size:32px;margin:0 0 18px;border-left:4px solid var(--cyan);padding-left:14px;color:#fff}h3{margin:0 0 8px;color:var(--cyan)}.lead{font-size:18px;color:#bec9d2;max-width:950px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:26px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px}.card p{color:var(--muted);margin-bottom:0}.accent-green{border-top:3px solid var(--green)}.accent-yellow{border-top:3px solid var(--yellow)}.accent-red{border-top:3px solid var(--red)}.highlight{background:var(--panel2)}.badge{display:inline-block;padding:6px 11px;border-radius:20px;font-size:13px;font-weight:700;background:#27323b;color:var(--yellow);margin-top:10px}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.btn{display:inline-block;text-decoration:none;border-radius:8px;padding:11px 18px;font-weight:700;border:1px solid #4a5965;color:var(--text);background:#1a2128}.btn.primary{background:var(--cyan);color:#071017;border-color:var(--cyan)}.btn.green{border-color:var(--green);color:var(--green)}.support-amount{font-size:40px;font-weight:800;color:var(--yellow);line-height:1}.feedback-list{padding-left:20px;color:#c3cdd5}.feedback-list li{margin:7px 0}.notice{border-left:3px solid var(--green);padding:12px 16px;background:#121a18;color:#c9d6cf;margin:18px 0;border-radius:4px}.channels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}.channel{background:#151b20;border:1px solid var(--line);border-radius:10px;padding:16px}.channel a{font-weight:700;color:var(--cyan);text-decoration:none}.channel p{margin:6px 0 0;color:var(--muted);font-size:14px}footer{padding:30px 18px;border-top:1px solid var(--line);background:#090d10;text-align:center;color:#7f8b95;font-size:14px}footer strong{color:var(--cyan)}[data-copy]{display:none}[data-copy].active{display:block}
+@media(max-width:900px){.nav{flex-wrap:wrap}nav{order:3;width:100%;justify-content:center;margin-left:0}.langs{margin-left:auto}.grid,.channels{grid-template-columns:1fr}section{padding:46px 16px}h2{font-size:27px}.hero img{max-height:none}}
+</style>
 </head>
 <body>
-<header>
-  <div class="nav">
-    <div class="brand">BT<span>Car</span><span class="color-dots"><i class="dot c"></i><i class="dot g"></i><i class="dot y"></i><i class="dot r"></i></span></div>
-    <nav>
-      <a href="#about" data-i18n="nav_about">Bemutatás</a>
-      <a href="#features" data-i18n="nav_features">Funkciók</a>
-      <a href="#download" data-i18n="nav_download">Letöltés</a>
-      <a href="#feedback" data-i18n="nav_feedback">Visszajelzés</a>
-      <a href="#support" data-i18n="nav_support">Támogatás</a>
-      <a href="#thanks" data-i18n="nav_thanks">Köszönet</a>
-    </nav>
-    <div class="langs" aria-label="Language">
-      <button type="button" data-lang="hu">HU</button>
-      <button type="button" data-lang="en">EN</button>
-      <button type="button" data-lang="de">DE</button>
-    </div>
-  </div>
-</header>
-
+<header><div class="nav">
+<div class="brand" aria-label="BTCar">
+<svg viewBox="0 0 100 100" role="img" aria-label="BTCar logo">
+<path d="M50 8 C63 8 69 22 70 34 L86 55 C93 66 87 82 74 85 L57 88 C52 89 48 89 43 88 L26 85 C13 82 7 66 14 55 L30 34 C31 22 37 8 50 8Z" fill="#11171c" stroke="#00d63f" stroke-width="9" stroke-linejoin="round"/>
+<path d="M50 26 L50 55 L72 68" fill="none" stroke="#00d4ff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="50" cy="22" r="10" fill="#00d4ff"/><circle cx="27" cy="69" r="10" fill="#ffd200"/><circle cx="74" cy="69" r="10" fill="#ff4d4d" stroke="#11171c" stroke-width="3"/>
+</svg><span>BT<span class="car">Car</span></span></div>
+<nav><a href="#about" data-t="nav1">Bemutatás</a><a href="#features" data-t="nav2">Funkciók</a><a href="#download" data-t="nav3">Letöltés</a><a href="#feedback" data-t="nav4">Visszajelzés</a><a href="#support" data-t="nav5">Támogatás</a><a href="#thanks" data-t="nav6">Köszönet</a></nav>
+<div class="langs"><button data-lang="hu" class="active">HU</button><button data-lang="en">EN</button><button data-lang="de">DE</button></div>
+</div></header>
 <main>
-  <section class="hero">
-    <img src="assets/btcar-hero.webp" alt="BTCar Android micro model controller – EVP panel with multiple model categories" id="heroImg">
-    <div class="hero-note" data-i18n="hero_note">Egy Android telefon. Egy vezérlő. Sok modellfunkció.</div>
-  </section>
+<section class="hero"><img src="assets/btcar-hero-fixed.webp" alt="BTCar – one app, many models"><div class="hero-note" data-t="hero">Egy Android telefon. Egy vezérlő. Sok modellfunkció.</div></section>
 
-  <section id="about">
-    <div class="container">
-      <h2 data-i18n="about_title">Mi a BTCar?</h2>
-      <p class="lead" data-i18n="about_p1">A BTCar egy független fejlesztésű Android-alapú univerzális modellvezérlő. Célja, hogy egyetlen, testreszabható felületen lehessen mikromodelleket, RC járműveket és modellvasúti funkciókat vezérelni.</p>
-      <p class="lead" data-i18n="about_p2">Nem minden hagyományos RC távirányító helyettesítésére készül. Más megközelítést kínál: vezetés, világítás, hang, funkciók, telemetria és profilok egyetlen alkalmazásban, több kommunikációs móddal.</p>
-      <div class="grid">
-        <div class="card accent-green"><h3 data-i18n="about_card1_t">Egy app, sok modell</h3><p data-i18n="about_card1_p">Ugyanaz a telefon különböző modellekhez, modellenként menthető beállításokkal.</p></div>
-        <div class="card"><h3 data-i18n="about_card2_t">Több kommunikáció</h3><p data-i18n="about_card2_p">BLE, Bluetooth Classic, WiFi/ESP32, valamint fejlesztés alatt álló modellvasúti kapcsolatok.</p></div>
-        <div class="card accent-yellow"><h3 data-i18n="about_card3_t">Sok logikai funkció</h3><p data-i18n="about_card3_p">Kormány és gáz mellett F-funkciók, váltó, fények, hangok, telemetria és további modellezői funkciók.</p></div>
-      </div>
-    </div>
-  </section>
+<section id="about"><div class="container"><h2 data-t="aboutTitle">Mi a BTCar?</h2><p class="lead" data-t="about1">A BTCar egy független fejlesztésű, Android-alapú univerzális modellvezérlő. Egyetlen, testreszabható felületen mikromodellek, RC járművek és modellvasúti funkciók vezérelhetők.</p><p class="lead" data-t="about2">Nem minden hagyományos RC távirányító helyettesítésére készül. Más megközelítést kínál: vezetés, világítás, hang, funkciók, telemetria és profilok egyetlen alkalmazásban.</p><div class="grid"><div class="card accent-green"><h3 data-t="c1t">Egy app, sok modell</h3><p data-t="c1p">Ugyanaz a telefon különböző modellekhez, modellenként menthető beállításokkal.</p></div><div class="card"><h3 data-t="c2t">Több kommunikáció</h3><p data-t="c2p">BLE, Bluetooth Classic, WiFi/ESP32, valamint fejlesztés alatt álló modellvasúti kapcsolatok.</p></div><div class="card accent-yellow"><h3 data-t="c3t">Sok logikai funkció</h3><p data-t="c3p">Kormány és gáz mellett F-funkciók, váltó, fények, hangok, telemetria és további funkciók.</p></div></div></div></section>
 
-  <section id="features" class="highlight">
-    <div class="container">
-      <h2 data-i18n="features_title">Fő funkciók</h2>
-      <div class="grid">
-        <div class="card"><h3>BLE / BT Classic</h3><p data-i18n="f1">Közvetlen vezeték nélküli kapcsolat kompatibilis modellvezérlő elektronikákkal.</p></div>
-        <div class="card"><h3>WiFi / ESP32</h3><p data-i18n="f2">DataStream alapú WiFi vezérlés szerkeszthető hálózati beállításokkal.</p></div>
-        <div class="card"><h3>F0–F31</h3><p data-i18n="f3">Világítás, hang, kürt, sziréna és egyedi modellfunkciók kezelése.</p></div>
-        <div class="card"><h3 data-i18n="f4t">Kormány, gáz, váltó</h3><p data-i18n="f4">Érintőképernyős, modellhez igazítható vezérlés és biztonsági STOP funkció.</p></div>
-        <div class="card"><h3 data-i18n="f5t">Telemetria</h3><p data-i18n="f5">Kapcsolati és modelladatok megjelenítése közvetlenül a kezelőfelületen.</p></div>
-        <div class="card"><h3 data-i18n="f6t">Profilok</h3><p data-i18n="f6">Különböző modellek beállításainak mentése, megnyitása és kezelése.</p></div>
-      </div>
-    </div>
-  </section>
+<section id="features" class="highlight"><div class="container"><h2 data-t="featTitle">Fő funkciók</h2><div class="grid"><div class="card"><h3>BLE / BT Classic</h3><p data-t="f1">Közvetlen vezeték nélküli kapcsolat kompatibilis modellvezérlő elektronikákkal.</p></div><div class="card"><h3>WiFi / ESP32</h3><p data-t="f2">DataStream alapú WiFi vezérlés szerkeszthető hálózati beállításokkal.</p></div><div class="card"><h3>F0–F31</h3><p data-t="f3">Világítás, hang, kürt, sziréna és egyedi modellfunkciók.</p></div><div class="card"><h3 data-t="f4t">Kormány, gáz, váltó</h3><p data-t="f4">Érintőképernyős vezérlés és biztonsági STOP funkció.</p></div><div class="card"><h3 data-t="f5t">Telemetria</h3><p data-t="f5">Kapcsolati és modelladatok közvetlenül a kezelőfelületen.</p></div><div class="card"><h3 data-t="f6t">Profilok</h3><p data-t="f6">Különböző modellek beállításainak mentése és kezelése.</p></div></div></div></section>
 
-  <section id="download">
-    <div class="container">
-      <h2 data-i18n="download_title">Public Beta</h2>
-      <p class="lead" data-i18n="download_p">A BTCar jelenleg aktív fejlesztés és tesztelés alatt áll. A nyilvános béta verzió ingyenesen használható. A cél most a valós modelleken, különböző Android készülékeken és kommunikációs módokkal szerzett tapasztalatok összegyűjtése.</p>
-      <span class="badge" data-i18n="beta_badge">PUBLIC BETA · FEJLESZTÉS ALATT</span>
-      <div class="buttons">
-        <a class="btn primary" href="https://github.com/elektromodell/elektromodell.github.io/releases" data-i18n="download_btn">Kiadások / letöltés</a>
-        <a class="btn" href="https://github.com/elektromodell/elektromodell.github.io" data-i18n="repo_btn">GitHub projekt</a>
-      </div>
-    </div>
-  </section>
+<section id="download"><div class="container"><h2 data-t="dlTitle">Public Beta</h2><p class="lead" data-t="dlP">A BTCar jelenleg aktív fejlesztés és tesztelés alatt áll. A nyilvános béta verzió ingyenesen használható.</p><span class="badge" data-t="badge">PUBLIC BETA · FEJLESZTÉS ALATT</span><div class="buttons"><a class="btn primary" href="https://github.com/elektromodell/elektromodell.github.io/releases" data-t="dlBtn">Kiadások / letöltés</a><a class="btn" href="https://github.com/elektromodell/elektromodell.github.io">GitHub projekt</a></div></div></section>
 
-  <section id="feedback" class="highlight">
-    <div class="container">
-      <h2 data-i18n="feedback_title">Segítsd a fejlesztést visszajelzéssel</h2>
-      <p class="lead" data-i18n="feedback_p">Ha kipróbálod a BTCar-t, örömmel fogadok 1–2 képet az általad vezérelt modellről, és ha van rá lehetőséged, egy rövid videót is. Különösen fontos minden hibás, bizonytalan vagy nem a várt módon működő részlet jelzése.</p>
-      <ul class="feedback-list">
-        <li data-i18n="fb1">telefon típusa</li>
-        <li data-i18n="fb2">Android-verzió</li>
-        <li data-i18n="fb3">használt kommunikációs mód</li>
-        <li data-i18n="fb4">a hiba rövid leírása és reprodukálásának lépései</li>
-        <li data-i18n="fb5">ha lehetséges: kép vagy rövid videó / videólink</li>
-      </ul>
-      <div class="notice" data-i18n="consent">Ha képet vagy videót küldesz, kérlek külön jelezd, hogy hozzájárulsz-e annak BTCar weboldalon vagy projektbemutatóban történő felhasználásához. A beküldés önmagában nem jelent automatikus közzétételi engedélyt.</div>
-      <div class="buttons"><a class="btn green" href="https://github.com/elektromodell/elektromodell.github.io/issues" data-i18n="issue_btn">Hibajelzés / visszajelzés a GitHubon</a></div>
-    </div>
-  </section>
+<section id="feedback" class="highlight"><div class="container"><h2 data-t="fbTitle">Segítsd a fejlesztést visszajelzéssel</h2><p class="lead" data-t="fbP">Ha kipróbálod a BTCar-t, örömmel fogadok 1–2 képet az általad vezérelt modellről, és ha lehet, egy rövid videót is. Különösen fontos minden hibás, bizonytalan vagy nem a várt módon működő részlet jelzése.</p><ul class="feedback-list"><li data-t="fb1">telefon típusa</li><li data-t="fb2">Android-verzió</li><li data-t="fb3">használt kommunikációs mód</li><li data-t="fb4">a hiba rövid leírása és reprodukálásának lépései</li><li data-t="fb5">ha lehetséges: kép vagy rövid videó / videólink</li></ul><div class="notice" data-t="consent">Kép vagy videó beküldésekor külön jelezd, hogy hozzájárulsz-e annak BTCar weboldalon vagy projektbemutatóban történő felhasználásához. A beküldés önmagában nem jelent közzétételi engedélyt.</div><div class="buttons"><a class="btn green" href="https://github.com/elektromodell/elektromodell.github.io/issues" data-t="issue">Hibajelzés / visszajelzés a GitHubon</a></div></div></section>
 
-  <section id="support">
-    <div class="container">
-      <h2 data-i18n="support_title">A BTCar fejlesztésének támogatása</h2>
-      <div class="grid">
-        <div class="card accent-yellow">
-          <div class="support-amount">€10</div>
-          <p class="support-note" data-i18n="support_amount_note">ajánlott, önkéntes fejlesztési támogatás</p>
-        </div>
-        <div class="card">
-          <h3 data-i18n="support_free_t">A Public Beta ingyenes</h3>
-          <p data-i18n="support_free_p">A támogatás teljesen önkéntes, nem old fel funkciókat, és nem befolyásolja a béta verzió használatát.</p>
-        </div>
-        <div class="card accent-green">
-          <h3 data-i18n="support_why_t">Mire fordítódik?</h3>
-          <p data-i18n="support_why_p">Fejlesztésre, tesztelésre, dokumentációra és a projekt további fenntartására.</p>
-        </div>
-      </div>
-      <p class="lead" data-i18n="support_later">A közvetlen támogatási link / QR-kód a végleges beállítás után kerül ide.</p>
-    </div>
-  </section>
+<section id="support"><div class="container"><h2 data-t="supTitle">A BTCar fejlesztésének támogatása</h2><div class="grid"><div class="card accent-yellow"><div class="support-amount">€10</div><p data-t="sup1">ajánlott, önkéntes fejlesztési támogatás</p></div><div class="card"><h3 data-t="sup2t">A Public Beta ingyenes</h3><p data-t="sup2p">A támogatás teljesen önkéntes, nem old fel funkciókat, és nem befolyásolja a béta használatát.</p></div><div class="card accent-green"><h3 data-t="sup3t">A fejlesztés támogatása</h3><p data-t="sup3p">A támogatás a további fejlesztést, tesztelést és dokumentációt segíti. A fizetési lehetőség később kerül ide.</p></div></div></div></section>
 
-  <section id="thanks" class="highlight">
-    <div class="container">
-      <h2 data-i18n="thanks_title">Inspirációk és köszönet</h2>
-      <p class="lead" data-i18n="thanks_intro">A BTCar független fejlesztés. Az alábbi alkotók és YouTube-csatornák munkái sok ötletet, szakmai ismeretet és inspirációt adtak. A felsorolás köszönetnyilvánítás; nem jelent hivatalos együttműködést vagy támogatást a BTCar projekt irányába.</p>
-      <div class="channels">
-        <div class="channel"><a href="https://www.youtube.com/@DerTheoretiker" target="_blank" rel="noopener">DerTheoretiker</a><p data-i18n="ch1">Kiemelkedő oktatóvideók, kreatív ötletek és sok inspiráció a mikromodellezéshez.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@nicochan20042010" target="_blank" rel="noopener">nicochan20042010</a><p data-i18n="ch2">Rendkívüli precizitás és nagyszerű mechanikai megoldások.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@diorama111" target="_blank" rel="noopener">diorama111</a><p data-i18n="ch3">Precíz kézimunka, kiváló elektronikai ötletek és parányi modellmegoldások.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@TheHLab" target="_blank" rel="noopener">TheHLab</a><p data-i18n="ch4">Az alkalmazásos modellvezérlés egyik fontos kezdeti inspirációja; innen indult az „egy app, sok funkció” továbbgondolása.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@RC87" target="_blank" rel="noopener">RC87</a><p data-i18n="ch5">Remek hobbi megoldások és nagyon igényes kivitelezés.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@okyoskartraincar" target="_blank" rel="noopener">okyoskartraincar</a><p data-i18n="ch6">Alaptechnikák, kézi munka és hasznos oktatás, különösen kezdők számára.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@3hotmilk397" target="_blank" rel="noopener">3hotmilk397</a><p data-i18n="ch7">Funkcionális 3D nyomtatott modellek, precíz mozgások és élethű kivitelezés.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@87BusModels-d5t" target="_blank" rel="noopener">87BusModels</a><p data-i18n="ch8">Különösen érdekes tartalom az Ikarus buszok és buszmodellezés szerelmeseinek.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@Bj%C3%B6rnLorenzen/videos" target="_blank" rel="noopener">Björn Lorenzen</a><p data-i18n="ch9">Nagyon ajánlott oktatóvideók mikromodellezőknek.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@road87" target="_blank" rel="noopener">road87</a><p data-i18n="ch10">Rendkívül precíz, átgondolt és igényesen megvalósított modellezési megoldások.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@kasky_RC_factory" target="_blank" rel="noopener">kasky_RC_factory</a><p data-i18n="ch11">Szép, részletgazdag és élethű modellek.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@Maxim_Otton" target="_blank" rel="noopener">Maxim Otton</a><p data-i18n="ch12">Érdekes eltérő megközelítések és sok jó mechanikai ötlet.</p></div>
-        <div class="channel"><a href="https://www.youtube.com/@fsbely8536" target="_blank" rel="noopener">fsbely8536</a><p data-i18n="ch13">Páratlanul szép és élethű buszmodellek, látványos videókkal.</p></div>
-      </div>
-    </div>
-  </section>
+<section id="thanks" class="highlight"><div class="container"><h2 data-t="thTitle">Inspirációk és köszönet</h2><p class="lead" data-t="thIntro">A BTCar független fejlesztés. Az alábbi készítők és csatornák sok ötletet, szakmai ismeretet és inspirációt adtak; a felsorolás nem jelent hivatalos együttműködést vagy támogatást.</p><div class="channels">
+<div class="channel"><a href="https://www.youtube.com/@DerTheoretiker">DerTheoretiker</a><p data-t="ch1">Kiemelkedő oktatóvideók, ötletes megoldások és rengeteg inspiráció.</p></div><div class="channel"><a href="https://www.youtube.com/@nicochan20042010">nicochan20042010</a><p data-t="ch2">Rendkívüli precizitás és nagyszerű mechanikai konstrukciók.</p></div><div class="channel"><a href="https://www.youtube.com/@diorama111">diorama111</a><p data-t="ch3">Precíz kézimunka, elektronikai ötletek és parányi modellmegoldások.</p></div><div class="channel"><a href="https://www.youtube.com/@TheHLab">TheHLab</a><p data-t="ch4">Az alkalmazásos modellvezérlés egyik fontos kezdeti inspirációja.</p></div><div class="channel"><a href="https://www.youtube.com/@RC87">RC87</a><p data-t="ch5">Remek hobbi megoldások és igényes kivitelezés.</p></div><div class="channel"><a href="https://www.youtube.com/@okyoskartraincar">okyoskartraincar</a><p data-t="ch6">Alaptechnikák, kézi munka és jó inspiráció kezdőknek.</p></div><div class="channel"><a href="https://www.youtube.com/@3hotmilk397">3hotmilk397</a><p data-t="ch7">Funkcionális 3D nyomtatott modellek és élethű mozgások.</p></div><div class="channel"><a href="https://www.youtube.com/@87BusModels-d5t">87BusModels</a><p data-t="ch8">Különösen érdekes az Ikarus buszok szerelmeseinek.</p></div><div class="channel"><a href="https://www.youtube.com/@Bj%C3%B6rnLorenzen/videos">Björn Lorenzen</a><p data-t="ch9">Erősen ajánlott, oktató jellegű mikromodell-videók.</p></div><div class="channel"><a href="https://www.youtube.com/@road87">road87</a><p data-t="ch10">Precíz, átgondolt és igényesen megvalósított megoldások.</p></div><div class="channel"><a href="https://www.youtube.com/@kasky_RC_factory">kasky_RC_factory</a><p data-t="ch11">Szép, részletgazdag és élethű modellek.</p></div><div class="channel"><a href="https://www.youtube.com/@Maxim_Otton">Maxim Otton</a><p data-t="ch12">Érdekes alternatív megközelítések és jó mechanikai ötletek.</p></div><div class="channel"><a href="https://www.youtube.com/@fsbely8536">fsbely8536</a><p data-t="ch13">Különösen szép és élethű buszmodellek.</p></div>
+</div></div></section>
 </main>
-
-<footer>
-  <p><strong>BTCar</strong> – Android Micro Model Controller</p>
-  <p>© 2026 elektromodell</p>
-</footer>
-
+<footer><p><strong>BTCar</strong> – Android Micro Model Controller</p><p>© 2026 elektromodell</p></footer>
 <script>
-const T = {
-hu:{
-nav_about:"Bemutatás",nav_features:"Funkciók",nav_download:"Letöltés",nav_feedback:"Visszajelzés",nav_support:"Támogatás",nav_thanks:"Köszönet",
-hero_note:"Egy Android telefon. Egy vezérlő. Sok modellfunkció.",
-about_title:"Mi a BTCar?",about_p1:"A BTCar egy független fejlesztésű Android-alapú univerzális modellvezérlő. Célja, hogy egyetlen, testreszabható felületen lehessen mikromodelleket, RC járműveket és modellvasúti funkciókat vezérelni.",about_p2:"Nem minden hagyományos RC távirányító helyettesítésére készül. Más megközelítést kínál: vezetés, világítás, hang, funkciók, telemetria és profilok egyetlen alkalmazásban, több kommunikációs móddal.",
-about_card1_t:"Egy app, sok modell",about_card1_p:"Ugyanaz a telefon különböző modellekhez, modellenként menthető beállításokkal.",about_card2_t:"Több kommunikáció",about_card2_p:"BLE, Bluetooth Classic, WiFi/ESP32, valamint fejlesztés alatt álló modellvasúti kapcsolatok.",about_card3_t:"Sok logikai funkció",about_card3_p:"Kormány és gáz mellett F-funkciók, váltó, fények, hangok, telemetria és további modellezői funkciók.",
-features_title:"Fő funkciók",f1:"Közvetlen vezeték nélküli kapcsolat kompatibilis modellvezérlő elektronikákkal.",f2:"DataStream alapú WiFi vezérlés szerkeszthető hálózati beállításokkal.",f3:"Világítás, hang, kürt, sziréna és egyedi modellfunkciók kezelése.",f4t:"Kormány, gáz, váltó",f4:"Érintőképernyős, modellhez igazítható vezérlés és biztonsági STOP funkció.",f5t:"Telemetria",f5:"Kapcsolati és modelladatok megjelenítése közvetlenül a kezelőfelületen.",f6t:"Profilok",f6:"Különböző modellek beállításainak mentése, megnyitása és kezelése.",
-download_title:"Public Beta",download_p:"A BTCar jelenleg aktív fejlesztés és tesztelés alatt áll. A nyilvános béta verzió ingyenesen használható. A cél most a valós modelleken, különböző Android készülékeken és kommunikációs módokkal szerzett tapasztalatok összegyűjtése.",beta_badge:"PUBLIC BETA · FEJLESZTÉS ALATT",download_btn:"Kiadások / letöltés",repo_btn:"GitHub projekt",
-feedback_title:"Segítsd a fejlesztést visszajelzéssel",feedback_p:"Ha kipróbálod a BTCar-t, örömmel fogadok 1–2 képet az általad vezérelt modellről, és ha van rá lehetőséged, egy rövid videót is. Különösen fontos minden hibás, bizonytalan vagy nem a várt módon működő részlet jelzése.",fb1:"telefon típusa",fb2:"Android-verzió",fb3:"használt kommunikációs mód",fb4:"a hiba rövid leírása és reprodukálásának lépései",fb5:"ha lehetséges: kép vagy rövid videó / videólink",consent:"Ha képet vagy videót küldesz, kérlek külön jelezd, hogy hozzájárulsz-e annak BTCar weboldalon vagy projektbemutatóban történő felhasználásához. A beküldés önmagában nem jelent automatikus közzétételi engedélyt.",issue_btn:"Hibajelzés / visszajelzés a GitHubon",
-support_title:"A BTCar fejlesztésének támogatása",support_amount_note:"ajánlott, önkéntes fejlesztési támogatás",support_free_t:"A Public Beta ingyenes",support_free_p:"A támogatás teljesen önkéntes, nem old fel funkciókat, és nem befolyásolja a béta verzió használatát.",support_why_t:"Mire fordítódik?",support_why_p:"Fejlesztésre, tesztelésre, dokumentációra és a projekt további fenntartására.",support_later:"A közvetlen támogatási link / QR-kód a végleges beállítás után kerül ide.",
-thanks_title:"Inspirációk és köszönet",thanks_intro:"A BTCar független fejlesztés. Az alábbi alkotók és YouTube-csatornák munkái sok ötletet, szakmai ismeretet és inspirációt adtak. A felsorolás köszönetnyilvánítás; nem jelent hivatalos együttműködést vagy támogatást a BTCar projekt irányába.",
-ch1:"Kiemelkedő oktatóvideók, kreatív ötletek és sok inspiráció a mikromodellezéshez.",ch2:"Rendkívüli precizitás és nagyszerű mechanikai megoldások.",ch3:"Precíz kézimunka, kiváló elektronikai ötletek és parányi modellmegoldások.",ch4:"Az alkalmazásos modellvezérlés egyik fontos kezdeti inspirációja; innen indult az „egy app, sok funkció” továbbgondolása.",ch5:"Remek hobbi megoldások és nagyon igényes kivitelezés.",ch6:"Alaptechnikák, kézi munka és hasznos oktatás, különösen kezdők számára.",ch7:"Funkcionális 3D nyomtatott modellek, precíz mozgások és élethű kivitelezés.",ch8:"Különösen érdekes tartalom az Ikarus buszok és buszmodellezés szerelmeseinek.",ch9:"Nagyon ajánlott oktatóvideók mikromodellezőknek.",ch10:"Rendkívül precíz, átgondolt és igényesen megvalósított modellezési megoldások.",ch11:"Szép, részletgazdag és élethű modellek.",ch12:"Érdekes eltérő megközelítések és sok jó mechanikai ötlet.",ch13:"Páratlanul szép és élethű buszmodellek, látványos videókkal."
-},
-en:{
-nav_about:"About",nav_features:"Features",nav_download:"Download",nav_feedback:"Feedback",nav_support:"Support",nav_thanks:"Acknowledgements",
-hero_note:"One Android phone. One controller. Many model functions.",
-about_title:"What is BTCar?",about_p1:"BTCar is an independently developed Android-based universal model controller. Its goal is to control micro models, RC vehicles and model railway functions from one configurable interface.",about_p2:"It is not intended to replace every traditional RC transmitter. It offers a different approach: driving, lighting, sound, functions, telemetry and profiles in one app with multiple communication methods.",
-about_card1_t:"One app, many models",about_card1_p:"Use the same phone with different models and save settings for each model.",about_card2_t:"Multiple connections",about_card2_p:"BLE, Bluetooth Classic, WiFi/ESP32, plus model-railway connections under development.",about_card3_t:"Many logical functions",about_card3_p:"Beyond steering and throttle: F-functions, gearbox, lights, sound, telemetry and more.",
-features_title:"Main features",f1:"Direct wireless connection to compatible model-control electronics.",f2:"DataStream-based WiFi control with editable network settings.",f3:"Control lighting, sound, horn, siren and custom model functions.",f4t:"Steering, throttle, gearbox",f4:"Touchscreen model control with an integrated safety STOP function.",f5t:"Telemetry",f5:"Connection and model data shown directly on the control interface.",f6t:"Profiles",f6:"Save, open and manage settings for different models.",
-download_title:"Public Beta",download_p:"BTCar is currently under active development and testing. The public beta is free to use. The current goal is to gather real-world experience from different models, Android devices and communication modes.",beta_badge:"PUBLIC BETA · UNDER DEVELOPMENT",download_btn:"Releases / download",repo_btn:"GitHub project",
-feedback_title:"Help improve BTCar with feedback",feedback_p:"If you try BTCar, I would be happy to receive 1–2 photos of the model you control and, if possible, a short video. It is especially important to report anything that behaves incorrectly, unreliably or differently from what you expected.",fb1:"phone model",fb2:"Android version",fb3:"communication mode used",fb4:"short description of the issue and steps to reproduce it",fb5:"if possible: photo or short video / video link",consent:"If you send photos or video, please state separately whether you allow them to be used on the BTCar website or in project presentations. Sending material does not automatically grant publication permission.",issue_btn:"Bug report / feedback on GitHub",
-support_title:"Support BTCar development",support_amount_note:"suggested voluntary development support",support_free_t:"The Public Beta is free",support_free_p:"Support is entirely voluntary, does not unlock features and does not affect access to the beta version.",support_why_t:"What does it support?",support_why_p:"Development, testing, documentation and continued maintenance of the project.",support_later:"A direct support link / QR code will be added here after the final payment setup.",
-thanks_title:"Inspirations & Acknowledgements",thanks_intro:"BTCar is an independent development project. The creators and YouTube channels below have provided valuable ideas, knowledge and inspiration. This acknowledgement does not imply official cooperation with or endorsement of the BTCar project.",
-ch1:"Excellent tutorials, creative ideas and a major source of inspiration for micro modelling.",ch2:"Outstanding precision and excellent mechanical solutions.",ch3:"Exceptional craftsmanship, clever electronics and remarkably small-scale solutions.",ch4:"One of the key early inspirations for app-based model control and the idea of taking it further into an all-in-one controller.",ch5:"Excellent hobby solutions and beautifully executed models.",ch6:"Fundamental techniques, hand-building methods and useful tutorials, especially for beginners.",ch7:"Functional 3D-printed models, precise movements and highly realistic execution.",ch8:"Especially interesting for enthusiasts of Ikarus buses and bus modelling.",ch9:"Highly recommended instructional videos for micro modellers.",ch10:"Extremely precise, well-engineered and carefully executed modelling solutions.",ch11:"Beautiful, detailed and realistic models.",ch12:"Interesting alternative approaches and many clever mechanical ideas.",ch13:"Outstandingly realistic bus models presented in impressive videos."
-},
-de:{
-nav_about:"Über BTCar",nav_features:"Funktionen",nav_download:"Download",nav_feedback:"Feedback",nav_support:"Unterstützen",nav_thanks:"Danksagungen",
-hero_note:"Ein Android-Smartphone. Eine Steuerung. Viele Modellfunktionen.",
-about_title:"Was ist BTCar?",about_p1:"BTCar ist eine unabhängig entwickelte, Android-basierte Universalsteuerung für Mikromodelle. Ziel ist es, Mikromodelle, RC-Fahrzeuge und Modellbahnfunktionen über eine einzige konfigurierbare Oberfläche zu steuern.",about_p2:"BTCar soll nicht jede klassische RC-Fernsteuerung ersetzen. Es bietet einen anderen Ansatz: Fahren, Beleuchtung, Sound, Funktionen, Telemetrie und Profile in einer App mit mehreren Kommunikationsarten.",
-about_card1_t:"Eine App, viele Modelle",about_card1_p:"Dasselbe Smartphone für unterschiedliche Modelle, mit separat speicherbaren Einstellungen.",about_card2_t:"Mehrere Verbindungen",about_card2_p:"BLE, Bluetooth Classic, WiFi/ESP32 sowie Modellbahn-Verbindungen in Entwicklung.",about_card3_t:"Viele logische Funktionen",about_card3_p:"Neben Lenkung und Gas: F-Funktionen, Getriebe, Licht, Sound, Telemetrie und mehr.",
-features_title:"Hauptfunktionen",f1:"Direkte drahtlose Verbindung mit kompatibler Modellsteuerungselektronik.",f2:"DataStream-basierte WiFi-Steuerung mit editierbaren Netzwerkeinstellungen.",f3:"Steuerung von Beleuchtung, Sound, Hupe, Sirene und individuellen Modellfunktionen.",f4t:"Lenkung, Gas, Getriebe",f4:"Touchscreen-Steuerung für Modelle mit integrierter STOP-Sicherheitsfunktion.",f5t:"Telemetrie",f5:"Verbindungs- und Modelldaten direkt auf der Bedienoberfläche.",f6t:"Profile",f6:"Einstellungen verschiedener Modelle speichern, öffnen und verwalten.",
-download_title:"Public Beta",download_p:"BTCar befindet sich derzeit in aktiver Entwicklung und Erprobung. Die öffentliche Beta-Version ist kostenlos nutzbar. Ziel ist es, praktische Erfahrungen mit unterschiedlichen Modellen, Android-Geräten und Kommunikationsarten zu sammeln.",beta_badge:"PUBLIC BETA · IN ENTWICKLUNG",download_btn:"Releases / Download",repo_btn:"GitHub-Projekt",
-feedback_title:"Hilf mit deinem Feedback bei der Entwicklung",feedback_p:"Wenn du BTCar ausprobierst, freue ich mich über 1–2 Fotos deines gesteuerten Modells und – wenn möglich – auch über ein kurzes Video. Besonders wichtig sind Hinweise auf fehlerhafte, unsichere oder unerwartete Funktionen.",fb1:"Smartphone-Modell",fb2:"Android-Version",fb3:"verwendete Kommunikationsart",fb4:"kurze Fehlerbeschreibung und Schritte zur Reproduktion",fb5:"wenn möglich: Foto oder kurzes Video / Videolink",consent:"Wenn du Fotos oder Videos sendest, gib bitte separat an, ob du deren Verwendung auf der BTCar-Webseite oder in Projektpräsentationen erlaubst. Das Einsenden bedeutet nicht automatisch eine Veröffentlichungserlaubnis.",issue_btn:"Fehler melden / Feedback auf GitHub",
-support_title:"BTCar-Entwicklung unterstützen",support_amount_note:"empfohlene freiwillige Entwicklungsunterstützung",support_free_t:"Die Public Beta ist kostenlos",support_free_p:"Die Unterstützung ist vollständig freiwillig, schaltet keine Funktionen frei und beeinflusst die Nutzung der Beta-Version nicht.",support_why_t:"Wofür wird sie verwendet?",support_why_p:"Für Entwicklung, Tests, Dokumentation und die weitere Pflege des Projekts.",support_later:"Ein direkter Unterstützungslink / QR-Code wird nach der endgültigen Einrichtung hier ergänzt.",
-thanks_title:"Inspirationen & Danksagungen",thanks_intro:"BTCar ist ein unabhängig entwickeltes Projekt. Die Arbeiten der folgenden Modellbauer und YouTube-Kanäle haben viele Ideen, Fachwissen und Inspiration geliefert. Diese Nennung bedeutet keine offizielle Zusammenarbeit oder Unterstützung des BTCar-Projekts.",
-ch1:"Hervorragende Lehrvideos, kreative Lösungen und eine große Inspirationsquelle für den Mikromodellbau.",ch2:"Außergewöhnliche Präzision und hervorragende mechanische Lösungen.",ch3:"Äußerst präzise Handarbeit, interessante Elektronikideen und beeindruckend kleine Modelllösungen.",ch4:"Eine der wichtigsten frühen Inspirationen für appbasierte Modellsteuerung und die Weiterentwicklung zur vielseitigen All-in-one-Steuerung.",ch5:"Sehr gute Hobbylösungen und ausgesprochen sauber ausgeführte Modelle.",ch6:"Grundlagen, handwerkliche Techniken und hilfreiche Lernvideos, besonders für Einsteiger.",ch7:"Funktionale 3D-gedruckte Modelle, präzise Bewegungen und sehr realistische Ausführung.",ch8:"Besonders interessant für Liebhaber von Ikarus-Bussen und Busmodellen.",ch9:"Sehr empfehlenswerte Lehrvideos für Mikromodellbauer.",ch10:"Außergewöhnlich präzise, durchdachte und hochwertig umgesetzte Modellbaulösungen.",ch11:"Schöne, detailreiche und realistische Modelle.",ch12:"Interessante alternative Herangehensweisen und viele gute mechanische Ideen.",ch13:"Außergewöhnlich schöne und realistische Busmodelle mit eindrucksvollen Videopräsentationen."
-}
-};
-function setLang(lang){
-  const d=T[lang]||T.hu;
-  document.documentElement.lang=lang;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(d[k])el.textContent=d[k]});
-  document.querySelectorAll('.langs button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
-  localStorage.setItem('btcar-lang',lang);
-  const titles={hu:'BTCar – Android mikromodell-vezérlő',en:'BTCar – Android Micro Model Controller',de:'BTCar – Android Mikromodell-Steuerung'};
-  document.title=titles[lang]||titles.hu;
-}
-document.querySelectorAll('.langs button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
-const saved=localStorage.getItem('btcar-lang');
-const browser=(navigator.language||'hu').slice(0,2).toLowerCase();
-setLang(saved || (['hu','en','de'].includes(browser)?browser:'en'));
+const T={
+hu:{nav1:'Bemutatás',nav2:'Funkciók',nav3:'Letöltés',nav4:'Visszajelzés',nav5:'Támogatás',nav6:'Köszönet',hero:'Egy Android telefon. Egy vezérlő. Sok modellfunkció.',aboutTitle:'Mi a BTCar?',about1:'A BTCar egy független fejlesztésű, Android-alapú univerzális modellvezérlő. Egyetlen, testreszabható felületen mikromodellek, RC járművek és modellvasúti funkciók vezérelhetők.',about2:'Nem minden hagyományos RC távirányító helyettesítésére készül. Más megközelítést kínál: vezetés, világítás, hang, funkciók, telemetria és profilok egyetlen alkalmazásban.',c1t:'Egy app, sok modell',c1p:'Ugyanaz a telefon különböző modellekhez, modellenként menthető beállításokkal.',c2t:'Több kommunikáció',c2p:'BLE, Bluetooth Classic, WiFi/ESP32, valamint fejlesztés alatt álló modellvasúti kapcsolatok.',c3t:'Sok logikai funkció',c3p:'Kormány és gáz mellett F-funkciók, váltó, fények, hangok, telemetria és további funkciók.',featTitle:'Fő funkciók',f1:'Közvetlen vezeték nélküli kapcsolat kompatibilis modellvezérlő elektronikákkal.',f2:'DataStream alapú WiFi vezérlés szerkeszthető hálózati beállításokkal.',f3:'Világítás, hang, kürt, sziréna és egyedi modellfunkciók.',f4t:'Kormány, gáz, váltó',f4:'Érintőképernyős vezérlés és biztonsági STOP funkció.',f5t:'Telemetria',f5:'Kapcsolati és modelladatok közvetlenül a kezelőfelületen.',f6t:'Profilok',f6:'Különböző modellek beállításainak mentése és kezelése.',dlTitle:'Public Beta',dlP:'A BTCar jelenleg aktív fejlesztés és tesztelés alatt áll. A nyilvános béta verzió ingyenesen használható.',badge:'PUBLIC BETA · FEJLESZTÉS ALATT',dlBtn:'Kiadások / letöltés',fbTitle:'Segítsd a fejlesztést visszajelzéssel',fbP:'Ha kipróbálod a BTCar-t, örömmel fogadok 1–2 képet az általad vezérelt modellről, és ha lehet, egy rövid videót is. Különösen fontos minden hibás, bizonytalan vagy nem a várt módon működő részlet jelzése.',fb1:'telefon típusa',fb2:'Android-verzió',fb3:'használt kommunikációs mód',fb4:'a hiba rövid leírása és reprodukálásának lépései',fb5:'ha lehetséges: kép vagy rövid videó / videólink',consent:'Kép vagy videó beküldésekor külön jelezd, hogy hozzájárulsz-e annak BTCar weboldalon vagy projektbemutatóban történő felhasználásához. A beküldés önmagában nem jelent közzétételi engedélyt.',issue:'Hibajelzés / visszajelzés a GitHubon',supTitle:'A BTCar fejlesztésének támogatása',sup1:'ajánlott, önkéntes fejlesztési támogatás',sup2t:'A Public Beta ingyenes',sup2p:'A támogatás teljesen önkéntes, nem old fel funkciókat, és nem befolyásolja a béta használatát.',sup3t:'A fejlesztés támogatása',sup3p:'A támogatás a további fejlesztést, tesztelést és dokumentációt segíti. A fizetési lehetőség később kerül ide.',thTitle:'Inspirációk és köszönet',thIntro:'A BTCar független fejlesztés. Az alábbi készítők és csatornák sok ötletet, szakmai ismeretet és inspirációt adtak; a felsorolás nem jelent hivatalos együttműködést vagy támogatást.'},
+en:{nav1:'About',nav2:'Features',nav3:'Download',nav4:'Feedback',nav5:'Support',nav6:'Thanks',hero:'One Android phone. One controller. Many model functions.',aboutTitle:'What is BTCar?',about1:'BTCar is an independently developed Android-based universal model controller for micro models, RC vehicles and model railway functions.',about2:'It is not intended to replace every traditional RC transmitter. It offers a different approach: driving, lighting, sound, functions, telemetry and profiles in one app.',c1t:'One app, many models',c1p:'The same phone can be used with different models, with model-specific saved settings.',c2t:'Multiple connections',c2p:'BLE, Bluetooth Classic, WiFi/ESP32 and model railway connections under development.',c3t:'Many logical functions',c3p:'Steering and throttle plus F-functions, gearbox, lights, sound, telemetry and more.',featTitle:'Main features',f1:'Direct wireless connection to compatible model-control electronics.',f2:'DataStream-based WiFi control with editable network settings.',f3:'Lighting, sound, horn, siren and custom model functions.',f4t:'Steering, throttle, gearbox',f4:'Touchscreen control with a safety STOP function.',f5t:'Telemetry',f5:'Connection and model data directly on the control interface.',f6t:'Profiles',f6:'Save and manage settings for different models.',dlTitle:'Public Beta',dlP:'BTCar is currently under active development and testing. The public beta is free to use.',badge:'PUBLIC BETA · UNDER DEVELOPMENT',dlBtn:'Releases / download',fbTitle:'Help development with feedback',fbP:'If you try BTCar, I would be glad to receive one or two photos of the model you control and, if possible, a short video. Please report any feature that is faulty, unstable or does not work as expected.',fb1:'phone model',fb2:'Android version',fb3:'communication mode used',fb4:'short description and steps to reproduce the issue',fb5:'if possible: photo or short video / video link',consent:'If you send photos or videos, please separately indicate whether you allow their use on the BTCar website or in project presentations. Submission alone is not permission to publish.',issue:'Report a bug / send feedback on GitHub',supTitle:'Support BTCar development',sup1:'suggested voluntary development support',sup2t:'The Public Beta is free',sup2p:'Support is entirely voluntary, unlocks no features and does not affect beta access.',sup3t:'Supporting development',sup3p:'Support helps further development, testing and documentation. A payment option will be added later.',thTitle:'Inspirations & Acknowledgements',thIntro:'BTCar is an independent development project. The creators and channels below have provided ideas, knowledge and inspiration; inclusion does not imply official cooperation or endorsement.'},
+de:{nav1:'Über BTCar',nav2:'Funktionen',nav3:'Download',nav4:'Feedback',nav5:'Unterstützung',nav6:'Danksagung',hero:'Ein Android-Smartphone. Eine Steuerung. Viele Modellfunktionen.',aboutTitle:'Was ist BTCar?',about1:'BTCar ist eine unabhängig entwickelte, Android-basierte Universalsteuerung für Mikromodelle, RC-Fahrzeuge und Modellbahn-Funktionen.',about2:'BTCar soll nicht jede klassische RC-Fernsteuerung ersetzen. Es bietet einen anderen Ansatz: Fahren, Licht, Sound, Funktionen, Telemetrie und Profile in einer App.',c1t:'Eine App, viele Modelle',c1p:'Dasselbe Smartphone für verschiedene Modelle, mit modellspezifisch gespeicherten Einstellungen.',c2t:'Mehrere Verbindungen',c2p:'BLE, Bluetooth Classic, WiFi/ESP32 sowie Modellbahn-Verbindungen in Entwicklung.',c3t:'Viele logische Funktionen',c3p:'Lenkung und Gas plus F-Funktionen, Getriebe, Licht, Sound, Telemetrie und mehr.',featTitle:'Hauptfunktionen',f1:'Direkte drahtlose Verbindung mit kompatibler Modell-Elektronik.',f2:'DataStream-basierte WiFi-Steuerung mit editierbaren Netzwerkeinstellungen.',f3:'Licht, Sound, Hupe, Sirene und individuelle Modellfunktionen.',f4t:'Lenkung, Gas, Getriebe',f4:'Touchscreen-Steuerung mit Sicherheits-STOP-Funktion.',f5t:'Telemetrie',f5:'Verbindungs- und Modelldaten direkt auf der Bedienoberfläche.',f6t:'Profile',f6:'Einstellungen verschiedener Modelle speichern und verwalten.',dlTitle:'Public Beta',dlP:'BTCar befindet sich derzeit in aktiver Entwicklung und Erprobung. Die öffentliche Beta kann kostenlos genutzt werden.',badge:'PUBLIC BETA · IN ENTWICKLUNG',dlBtn:'Versionen / Download',fbTitle:'Hilf der Entwicklung mit Feedback',fbP:'Wenn du BTCar ausprobierst, freue ich mich über ein oder zwei Fotos deines gesteuerten Modells und, wenn möglich, ein kurzes Video. Bitte melde fehlerhafte, instabile oder unerwartet arbeitende Funktionen.',fb1:'Smartphone-Modell',fb2:'Android-Version',fb3:'verwendeter Kommunikationsmodus',fb4:'kurze Fehlerbeschreibung und Schritte zur Reproduktion',fb5:'wenn möglich: Foto oder kurzes Video / Videolink',consent:'Wenn du Fotos oder Videos sendest, gib bitte separat an, ob sie auf der BTCar-Webseite oder in Projektvorstellungen verwendet werden dürfen. Das Einsenden allein ist keine Veröffentlichungserlaubnis.',issue:'Fehler melden / Feedback auf GitHub',supTitle:'BTCar-Entwicklung unterstützen',sup1:'empfohlene freiwillige Entwicklungsunterstützung',sup2t:'Die Public Beta ist kostenlos',sup2p:'Die Unterstützung ist vollständig freiwillig, schaltet keine Funktionen frei und beeinflusst den Beta-Zugang nicht.',sup3t:'Entwicklung unterstützen',sup3p:'Die Unterstützung hilft bei weiterer Entwicklung, Tests und Dokumentation. Eine Zahlungsmöglichkeit wird später ergänzt.',thTitle:'Inspirationen & Danksagungen',thIntro:'BTCar ist ein unabhängig entwickeltes Projekt. Die folgenden Entwickler und Kanäle haben Ideen, Wissen und Inspiration geliefert; die Nennung bedeutet keine offizielle Zusammenarbeit oder Unterstützung.'}}
+const channelCopy={en:['Excellent tutorials, clever ideas and lots of inspiration.','Outstanding precision and excellent mechanical solutions.','Precise craftsmanship, electronics ideas and tiny-model solutions.','One of the important early inspirations for app-based model control.','Great hobby solutions and high-quality execution.','Fundamental techniques and useful inspiration for beginners.','Functional 3D-printed models and realistic movements.','Especially interesting for Ikarus bus enthusiasts.','Highly recommended instructional micro-model videos.','Precise, thoughtful and carefully executed solutions.','Beautiful, detailed and realistic models.','Interesting alternative approaches and good mechanical ideas.','Exceptionally beautiful and realistic bus models.'],de:['Hervorragende Lehrvideos, kreative Lösungen und viel Inspiration.','Außergewöhnliche Präzision und hervorragende mechanische Lösungen.','Präzise Handarbeit, Elektronikideen und winzige Modelllösungen.','Eine wichtige frühe Inspiration für die appbasierte Modellsteuerung.','Sehr gute Hobbylösungen und hochwertige Ausführung.','Grundlagen, Handarbeit und gute Inspiration für Einsteiger.','Funktionale 3D-gedruckte Modelle und realistische Bewegungen.','Besonders interessant für Liebhaber von Ikarus-Bussen.','Sehr empfehlenswerte Lehrvideos zum Mikromodellbau.','Präzise, durchdachte und hochwertig umgesetzte Lösungen.','Schöne, detailreiche und realistische Modelle.','Interessante alternative Ansätze und gute mechanische Ideen.','Außergewöhnlich schöne und realistische Busmodelle.']}
+function setLang(lang){document.documentElement.lang=lang;document.querySelectorAll('[data-t]').forEach(el=>{const k=el.dataset.t;if(T[lang]&&T[lang][k])el.textContent=T[lang][k]});document.querySelectorAll('.langs button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));if(lang!=='hu'){document.querySelectorAll('.channel p').forEach((p,i)=>{if(channelCopy[lang]&&channelCopy[lang][i])p.textContent=channelCopy[lang][i]})}else location.reload();localStorage.setItem('btcarLang',lang)}
+document.querySelectorAll('.langs button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));const saved=localStorage.getItem('btcarLang');if(saved&&saved!=='hu')setLang(saved);
 </script>
-</body>
-</html>
+</body></html>
